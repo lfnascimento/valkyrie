@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+local_default: &local_default
+  username: postgres
+  host: db
+  password:
+development:
+  <<: *default
+  <<: *local_default
+  database: valkyrie_development
+test:
+  <<: *default
+  <<: *local_default
+  database: valkyrie_test
+production:
+  <<: *default
+  database: valkyrie_production
+  username: valkyrie
+  password: <%= ENV['VALKYRIE_DATABASE_PASSWORD'] %>
