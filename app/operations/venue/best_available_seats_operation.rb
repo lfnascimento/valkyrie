@@ -1,6 +1,8 @@
-module Seats
+module Venue
   class BestAvailableSeatsOperation
-    attr_reader :venue, :party_of
+    include ::LetterNumberConvertible
+
+    attr_reader :venue, :party_of, :best_available_seats
 
     def initialize(venue, party_of = 1)
       @venue = venue
@@ -20,8 +22,6 @@ module Seats
 
     private
 
-    attr_reader :best_available_seats
-
     def lookup_best_consecutive_seats(row)
       return if party_of > row.size
 
@@ -31,6 +31,7 @@ module Seats
     def check_consecutive_seats(row)
       while party_of <= row.size do
         break if set_best_consecutive_available_seats(row.first(party_of))
+
         row.shift
       end
     end
@@ -75,10 +76,6 @@ module Seats
 
     def row_size
       @row_size ||= venue.dig(:venue, :layout, :rows).to_i
-    end
-
-    def letter_to_number(letter)
-      letter.upcase.tr('A-Z', '1-9a-q').to_i(27)
     end
   end
 end
