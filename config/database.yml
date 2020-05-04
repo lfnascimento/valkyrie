@@ -4,7 +4,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 local_default: &local_default
   username: postgres
-  host: db
+  #host: db
+  url: 'postgres://postgres:postgres@localhost'
   password:
 development:
   <<: *default
