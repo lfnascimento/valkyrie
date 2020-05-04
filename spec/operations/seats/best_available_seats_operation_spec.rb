@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Seats::BestAvailablSeatsOperation, type: :operation do
+describe Seats::BestAvailableSeatsOperation, type: :operation do
   subject { described_class.new(venue, party_of) }
 
   describe '#perform' do
