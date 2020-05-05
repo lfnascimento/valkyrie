@@ -5,48 +5,48 @@
       "columns": 8
     }
   },
-  "seats": {
-    "a1": {
+  "seats": [
+    {
       "id": "a1",
       "row": "a",
       "column": 1,
       "status": "AVAILABLE"
     },
-    "b4": {
+    {
       "id": "b4",
       "row": "b",
       "column": 4,
       "status": "AVAILABLE"
     },
-     "b6": {
+    {
       "id": "b6",
       "row": "b",
       "column": 6,
       "status": "AVAILABLE"
     },
-     "b7": {
+    {
       "id": "b7",
       "row": "b",
       "column": 7,
       "status": "AVAILABLE"
     },
-    "c4": {
+    {
       "id": "c4",
       "row": "c",
       "column": 4,
       "status": "AVAILABLE"
     },
-    "c5": {
+    {
       "id": "c5",
       "row": "c",
       "column": 5,
       "status": "AVAILABLE"
     },
-    "f7": {
+    {
       "id": "f7",
       "row": "f",
       "column": 7,
       "status": "AVAILABLE"
     }
-  }
+  ]
 }

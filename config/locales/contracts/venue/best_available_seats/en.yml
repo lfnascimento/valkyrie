@@ -1,0 +1,6 @@
+en:
+  contracts:
+    venue:
+      best_available_seats:
+        column_lt_or_eq_layout: "column should be less than or equal venue layout's columns"
+        row_lt_or_eq_layout: "row should be less than or equal venue layout's rows"

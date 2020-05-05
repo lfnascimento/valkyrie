@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      namespace :venue do
+        post 'lookup_best_available_seats',
+          to: 'best_available_seats#lookup',
+          as: :lookup_best_available_seats
+      end
+    end
+  end
 end

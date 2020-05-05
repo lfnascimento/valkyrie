@@ -11,12 +11,12 @@ module Venue
     end
 
     def perform
-      venue[:seats].values.each(&method(:calculate_distance_from_best_seats))
+      venue[:seats].each(&method(:calculate_distance_from_best_seats))
       if party_of > 1
-        venue[:seats].values.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
+        venue[:seats].group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
         best_available_seats
       else
-        best_available_seats.push(venue[:seats].values.min_by { |seat| seat[:distance] })
+        best_available_seats.push(venue[:seats].min_by { |seat| seat[:distance] })
       end
     end
 
