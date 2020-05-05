@@ -2,6 +2,6 @@ en:
   contracts:
     venue:
       best_available_seats:
-        column_lt_or_eq_layout_size: column should be less than or equal layout size
-        row_lt_or_eq_layout_size: row should be less than or equal layout size
-        party_of_lt_or_eq_layout_row_size: party of should be less than or equal layout row size
+        column_lt_or_eq_layout_size: column should be less than or equal to layout size
+        row_lt_or_eq_layout_size: row should be less than or equal to layout size
+        party_of_lt_or_eq_layout_row_size: party of should be less than or equal to layout row size

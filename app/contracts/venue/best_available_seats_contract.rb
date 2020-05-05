@@ -12,7 +12,7 @@ module Venue
 
       required(:seats).array(:hash)  do
         required(:row).filled(:string)
-        required(:column).value(:integer, gt?: 1)
+        required(:column).value(:integer, gt?: 0)
       end
 
       optional(:party_of).value(:integer, gt?: 0)
