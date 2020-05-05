@@ -14,6 +14,14 @@ module Venue
         required(:row).filled(:string)
         required(:column).value(:integer, gt?: 1)
       end
+
+      optional(:party_of).value(:integer, gt?: 0)
+    end
+
+    rule(:party_of) do
+      if value && (value > values[:venue][:layout][:rows])
+        key.failure(I18n.t('contracts.venue.best_available_seats.party_of_lt_or_eq_layout_row_size'))
+      end
     end
 
     rule(:seats).each do

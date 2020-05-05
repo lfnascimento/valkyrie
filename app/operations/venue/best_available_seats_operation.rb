@@ -2,21 +2,22 @@ module Venue
   class BestAvailableSeatsOperation
     include ::LetterNumberConvertible
 
-    attr_reader :venue, :party_of, :best_available_seats
+    attr_reader :venue, :available_seats, :party_of, :best_available_seats
 
-    def initialize(venue, party_of = 1)
-      @venue = venue
-      @party_of = party_of
+    def initialize(request)
+      @party_of = request[:party_of] || 1
+      @available_seats = request[:seats]
+      @venue = request[:venue]
       @best_available_seats = []
     end
 
     def perform
-      venue[:seats].each(&method(:calculate_distance_from_best_seats))
+      available_seats.each(&method(:calculate_distance_from_best_seats))
       if party_of > 1
-        venue[:seats].group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
+        available_seats.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
         best_available_seats
       else
-        best_available_seats.push(venue[:seats].min_by { |seat| seat[:distance] })
+        best_available_seats.push(available_seats.min_by { |seat| seat[:distance] })
       end
     end
 
@@ -75,7 +76,7 @@ module Venue
     end
 
     def row_size
-      @row_size ||= venue.dig(:venue, :layout, :rows).to_i
+      @row_size ||= venue.dig(:layout, :rows).to_i
     end
   end
 end

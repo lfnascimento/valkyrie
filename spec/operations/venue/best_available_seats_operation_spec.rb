@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 describe Venue::BestAvailableSeatsOperation, type: :operation do
-  subject { described_class.new(venue, party_of) }
+  subject { described_class.new(request) }
 
   describe '#perform' do
     context 'party of 1' do
-      let(:party_of) { 1 }
       context 'venue with a odd row size' do
-        let(:venue) do
+        let(:request) do
           JSON.parse(File.read('spec/support/files/venue/venue_with_odd_row.json'), symbolize_names: true)
         end
 
@@ -25,7 +24,7 @@ describe Venue::BestAvailableSeatsOperation, type: :operation do
       end
 
       context 'venue with a even row size' do
-        let(:venue) do
+        let(:request) do
           JSON.parse(File.read('spec/support/files/venue/venue_with_even_row.json'), symbolize_names: true)
         end
 
@@ -43,10 +42,8 @@ describe Venue::BestAvailableSeatsOperation, type: :operation do
       end
 
       context 'party of 2' do
-        let(:party_of) { 2 }
-
         context 'venue with a even row size and consecutive seats available' do
-          let(:venue) do
+          let(:request) do
             JSON.parse(File.read('spec/support/files/venue/venue_with_even_row_and_consecutive_seats_available.json'),
                        symbolize_names: true)
           end
