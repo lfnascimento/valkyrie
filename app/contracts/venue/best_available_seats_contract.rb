@@ -3,6 +3,8 @@ module Venue
     include ::LetterNumberConvertible
 
     params do
+      optional(:party_of).value(:integer, gt?: 0)
+
       required(:venue).hash do
         required(:layout).hash do
           required(:rows).value(:integer, gt?: 1, lt?: 27)
@@ -11,11 +13,11 @@ module Venue
       end
 
       required(:seats).array(:hash)  do
+        required(:id).filled(:string)
         required(:row).filled(:string)
         required(:column).value(:integer, gt?: 0)
+        optional(:status).value(:string)
       end
-
-      optional(:party_of).value(:integer, gt?: 0)
     end
 
     rule(:party_of) do

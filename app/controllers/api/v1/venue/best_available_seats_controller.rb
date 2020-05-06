@@ -4,7 +4,7 @@ module Api
       class BestAvailableSeatsController < ApplicationController
         def lookup
           if contract_validation.success?
-            render json: best_available_seats.as_json(only: [:row, :column]), status: :ok
+            render json: best_available_seats.as_json(only: [:id, :row, :column]), status: :ok
           else
             render json: contract_validation.errors.to_h, status: :unprocessable_entity
           end

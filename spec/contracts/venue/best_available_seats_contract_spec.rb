@@ -21,6 +21,7 @@ describe Venue::BestAvailableSeatsContract, type: :contract do
             }
           },
           seats: [{
+            id: 'f5',
             row: 'f',
             column: 5
           }]
@@ -45,6 +46,7 @@ describe Venue::BestAvailableSeatsContract, type: :contract do
             }
           },
           seats: [{
+            id: 'e6',
             row: 'e',
             column: 6
           }]
