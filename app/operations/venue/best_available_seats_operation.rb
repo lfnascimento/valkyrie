@@ -1,26 +1,27 @@
-module Seats
+module Venue
   class BestAvailableSeatsOperation
-    attr_reader :venue, :party_of
+    include ::LetterNumberConvertible
 
-    def initialize(venue, party_of = 1)
-      @venue = venue
-      @party_of = party_of
+    attr_reader :venue, :available_seats, :party_of, :best_available_seats
+
+    def initialize(request)
+      @party_of = request[:party_of] || 1
+      @available_seats = request[:seats]
+      @venue = request[:venue]
       @best_available_seats = []
     end
 
     def perform
-      venue[:seats].values.each(&method(:calculate_distance_from_best_seats))
+      available_seats.each(&method(:calculate_distance_from_best_seats))
       if party_of > 1
-        venue[:seats].values.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
+        available_seats.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
         best_available_seats
       else
-        best_available_seats.push(venue[:seats].values.min_by { |seat| seat[:distance] })
+        best_available_seats.push(available_seats.min_by { |seat| seat[:distance] })
       end
     end
 
     private
-
-    attr_reader :best_available_seats
 
     def lookup_best_consecutive_seats(row)
       return if party_of > row.size
@@ -31,6 +32,7 @@ module Seats
     def check_consecutive_seats(row)
       while party_of <= row.size do
         break if set_best_consecutive_available_seats(row.first(party_of))
+
         row.shift
       end
     end
@@ -74,11 +76,7 @@ module Seats
     end
 
     def row_size
-      @row_size ||= venue.dig(:venue, :layout, :rows).to_i
-    end
-
-    def letter_to_number(letter)
-      letter.upcase.tr('A-Z', '1-9a-q').to_i(27)
+      @row_size ||= venue.dig(:layout, :rows).to_i
     end
   end
 end
