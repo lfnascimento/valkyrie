@@ -12,7 +12,7 @@ module Venue
         end
       end
 
-      required(:seats).array(:hash)  do
+      required(:seats).array(:hash) do
         required(:id).filled(:string)
         required(:row).filled(:string)
         required(:column).value(:integer, gt?: 0)

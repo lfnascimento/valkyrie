@@ -14,8 +14,8 @@ module Api
 
         def contract_validation
           @contract_result ||= ::Venue::BestAvailableSeatsContract.
-            new.
-            call(params.to_unsafe_h.deep_symbolize_keys)
+                               new.
+                               call(params.to_unsafe_h.deep_symbolize_keys)
         end
 
         def best_available_seats
