@@ -55,4 +55,4 @@ Example:
 
 If a group of seats is requested, the request needs the `party_of` param
 
-Check out more [examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG)
+Please check the [examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG) out 
