@@ -18,4 +18,41 @@ $ docker-compose build
 ```$ docker-compose up```
 
 ## Usage
-[Examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG)
+
+Finding the best open seat should be sent a request to `/api/v1/venue/lookup_best_available_seats` with a list of available seats, number of rows and columns of a venue as json
+
+Example:
+```
+{
+  "venue": {
+    "layout": {
+      "rows": 7,
+      "columns": 10
+    }
+  },
+  "seats": [
+    {
+      "id": "a1",
+      "row": "a",
+      "column": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b4",
+      "row": "b",
+      "column": 4,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "g7",
+      "row": "g",
+      "column": 7,
+      "status": "AVAILABLE"
+    }
+  ]
+}
+```
+
+If a group of seats is requested, the request needs the `party_of` param
+
+Check out more [examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG)
