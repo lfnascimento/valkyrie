@@ -11,6 +11,7 @@ To run this project you need to have:
 $ git clone https://github.com/lfnascimento/valkyrie.git
 $ cd valkyrie
 $ docker-compose build
+$ docker-compose run vk bin/setup
 ```
 
 ## Running the project
