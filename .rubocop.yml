@@ -1,0 +1,140 @@
+AllCops:
+  DefaultFormatter: progress
+  DisplayCopNames: true
+  DisplayStyleGuide: false
+  ExtraDetails: false
+
+  UseCache: true
+  MaxFilesInCache: 10000
+  CacheRootDirectory: ~
+  AllowSymlinksInCacheRootDirectory: false
+
+  Exclude:
+    - node_modules/**/*
+    - vendor/**/*
+    - .git/**/*
+    - spec/fixtures/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - bin/*
+
+  TargetRubyVersion: 2.7
+
+Bundler/OrderedGems:
+  Enabled: false
+
+# Test classes can be too long
+Metrics/ClassLength:
+  Exclude:
+    - spec/*
+    - spec/**/*
+
+Layout/LineLength:
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#80-character-limits"
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 24
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+    - spec/*
+    - spec/**/*
+  ExcludedMethods:
+    - describe
+    - draw
+    - context
+    - configure
+    - setup
+
+Naming/MemoizedInstanceVariableName:
+    Enabled: false
+
+Naming/MethodName:
+  Exclude:
+    - lib/operation/**.rb
+
+Layout/CommentIndentation:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  SupportedStyles:
+    - leading
+    - trailing
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: space
+  SupportedStyles:
+    - space
+    - no_space
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Lint/UnusedMethodArgument:
+  AllowUnusedKeywordArguments: true
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+  SupportedStyles:
+    - prefer_alias
+    - prefer_alias_method
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+  SupportedStyles:
+    - compact
+    - expanded
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ParallelAssignment:
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#parallel-assignment"
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#percent-literal-braces"
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true

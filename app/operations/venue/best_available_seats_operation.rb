@@ -13,15 +13,19 @@ module Venue
 
     def perform
       available_seats.each(&method(:calculate_distance_from_best_seats))
-      if party_of > 1
-        available_seats.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
-        best_available_seats
-      else
-        best_available_seats.push(available_seats.min_by { |seat| seat[:distance] })
-      end
+      party_of > 1 ? best_available_seats_for_a_group : best_single_available_seat
+      best_available_seats
     end
 
     private
+
+    def best_single_available_seat
+      best_available_seats.push(available_seats.min_by { |seat| seat[:distance] })
+    end
+
+    def best_available_seats_for_a_group
+      available_seats.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
+    end
 
     def lookup_best_consecutive_seats(row)
       return if party_of > row.size
@@ -30,7 +34,7 @@ module Venue
     end
 
     def check_consecutive_seats(row)
-      while party_of <= row.size do
+      while party_of <= row.size
         break if set_best_consecutive_available_seats(row.first(party_of))
 
         row.shift
@@ -64,7 +68,7 @@ module Venue
     end
 
     def calculate_distance(best_seat_col, best_seat_row, seat_col, seat_row)
-      Math.sqrt(((best_seat_col - seat_col) ** 2) + ((best_seat_row - seat_row) ** 2))
+      Math.sqrt(((best_seat_col - seat_col)**2) + ((best_seat_row - seat_row)**2))
     end
 
     def best_seats

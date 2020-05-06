@@ -23,6 +23,8 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', '~> 0.80', require: false
+  gem 'reek', '~> 5.6.0'
 end
 
 group :test do
