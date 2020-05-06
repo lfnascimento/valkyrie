@@ -1,24 +1,21 @@
-# README
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/lfnascimento/valkyrie)
+# Valkyrie - Best Available Seats
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this project you need to have:
 
-Things you may want to cover:
+- **Docker**
 
-* Ruby version
+## Setup the project locally
+```
+$ git clone https://github.com/lfnascimento/valkyrie.git
+$ cd valkyrie
+$ docker-compose build
+```
 
-* System dependencies
+## Running the project
 
-* Configuration
+```$ docker-compose up```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Usage
+[Examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG)
