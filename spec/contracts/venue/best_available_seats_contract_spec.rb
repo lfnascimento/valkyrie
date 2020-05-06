@@ -10,7 +10,7 @@ describe Venue::BestAvailableSeatsContract, type: :contract do
       end
     end
 
-    context 'when seat row of gt than layout row size' do
+    context 'when seat row gt than layout row size' do
       let(:request) do
         {
           party_of: 1,
@@ -35,7 +35,7 @@ describe Venue::BestAvailableSeatsContract, type: :contract do
       end
     end
 
-    context 'when seat column gt than layout row size' do
+    context 'when seat column gt than layout column size' do
       let(:request) do
         {
           party_of: 1,
