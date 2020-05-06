@@ -19,7 +19,7 @@ $ docker-compose build
 
 ## Usage
 
-Finding the best open seat should be sent a request to `/api/v1/venue/lookup_best_available_seats` with a list of available seats, number of rows and columns of a venue as json
+To find the best open seat should be sent a `POST` request to `/api/v1/venue/lookup_best_available_seats` with a list of available seats, number of rows and columns of a venue as json
 
 Example:
 ```
