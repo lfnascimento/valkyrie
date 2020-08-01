@@ -2,11 +2,11 @@ version: '3.7'
 services:
   vk:
     build: .
-    command: bin/rails s -p 3000 -b '0.0.0.0'
+    command: bin/rails s -p 3001 -b '0.0.0.0'
     volumes:
       - '.:/valkyrie'
     ports:
-      - '3000:3000'
+      - '3001:3001'
     depends_on:
       - db
   db:
