@@ -5,7 +5,7 @@ describe Venue::BestAvailableSeatsOperation, type: :operation do
 
   describe '#perform' do
     context 'party of 1' do
-      context 'venue with a odd row size' do
+      context 'venue with a odd number of columns size' do
         context 'when the best seat is not available' do
           let(:request) do
             JSON.parse(File.read('spec/support/files/venue/venue_with_odd_column.json'), symbolize_names: true)
@@ -43,7 +43,7 @@ describe Venue::BestAvailableSeatsOperation, type: :operation do
         end
       end
 
-      context 'venue with a even row size' do
+      context 'venue with a even number of columns size' do
         let(:request) do
           JSON.parse(File.read('spec/support/files/venue/venue_with_even_column.json'), symbolize_names: true)
         end
@@ -62,7 +62,7 @@ describe Venue::BestAvailableSeatsOperation, type: :operation do
       end
 
       context 'party of 2' do
-        context 'venue with a even row size and consecutive seats available' do
+        context 'venue with a even number of columns size and consecutive seats available' do
           let(:request) do
             JSON.parse(File.read('spec/support/files/venue/venue_with_even_column_and_consecutive_seats_available.json'),
                        symbolize_names: true)
