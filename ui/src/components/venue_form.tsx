@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import Venue from './venue';
 import fetch from 'isomorphic-fetch';
 import BestAvailableSeatsResult from './best_available_seats_result';
-import { object, number } from 'yup';
+import { object, number , ref } from 'yup';
 
 const validationSchema = object({
   venue: object({layout: object({
@@ -12,7 +12,7 @@ const validationSchema = object({
       columns: number().required().min(2).max(20)
     })
   }),
-  party_of: number().required().min(1).max(26)
+  party_of: number().required().min(1).max(ref('venue.layout.columns'))
 })
 
 function VenueForm () {
@@ -58,7 +58,7 @@ function VenueForm () {
           type='text'
           onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
           value={formik.values.venue.layout.rows}
-          error={formik.errors.venue?.layout?.rows}
+          error={!!formik.errors.venue?.layout?.rows}
           helperText={formik.errors.venue?.layout?.rows}
         />
         <TextField
@@ -68,7 +68,7 @@ function VenueForm () {
           type='text'
           onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
           value={formik.values.venue.layout.columns}
-          error={formik.errors.venue?.layout?.columns}
+          error={!!formik.errors.venue?.layout?.columns}
           helperText={formik.errors.venue?.layout?.columns}
         />
         <TextField
@@ -78,7 +78,7 @@ function VenueForm () {
           type='text'
           onChange={formik.handleChange}
           value={formik.values.party_of}
-          error={formik.errors.party_of}
+          error={!!formik.errors.party_of}
           helperText={formik.errors.party_of}
         />
         <Button type='submit' color='primary' variant='outlined'>Find Best Seats</Button>
