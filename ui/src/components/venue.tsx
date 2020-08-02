@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Seat from './seat';
+import Seat from './Seat';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,11 +7,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { TableFooter } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
-const styles = theme => ({
+const styles = (theme : Theme) => ({
   root: {
     width: '100%',
     backgroundColor: "#363A42"
@@ -34,7 +34,7 @@ const styles = theme => ({
 });
 
 class Venue extends Component {
-  constructor(props) {
+  constructor(props : object) {
     super(props);
     this.state = { seatRows: [] }
     this.handleChange = this.handleChange.bind(this);
@@ -68,7 +68,7 @@ class Venue extends Component {
     }
   }
 
-  numberToLetter(number) {
+  numberToLetter(number : string|number) {
     return String.fromCharCode(64 + parseInt(number))
   }
 
@@ -88,8 +88,8 @@ class Venue extends Component {
           </TableHead>
           <TableBody>
              {
-              this.state.seatRows.map(function(row, rowIdx) {
-                return (<TableRow tabIndex={-1} key={rowIdx}>{row.map(function (seat, colIdx) {
+              this.state.seatRows.map(function(row, rowIdx : number) {
+                return (<TableRow tabIndex={-1} key={rowIdx}>{row.map(function (seat, colIdx :number) {
                   return <TableCell align="center" className={classes.cell} key={colIdx}>{seat}</TableCell>
                 })}</TableRow>)
               })}
@@ -101,3 +101,9 @@ class Venue extends Component {
 };
 
 export default withStyles(styles)(Venue);
+
+Venue.propTypes = {
+  row: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  column: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  checkedItems: PropTypes.object.isRequired
+};

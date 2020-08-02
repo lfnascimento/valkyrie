@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import StarsIcon from '@material-ui/icons/Stars';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   root: {
@@ -41,3 +41,7 @@ class BestAvailableSeatsResult extends Component {
 };
 
 export default withStyles(styles)(BestAvailableSeatsResult);
+
+BestAvailableSeatsResult.propTypes = {
+  seats: PropTypes.array.isRequired
+};

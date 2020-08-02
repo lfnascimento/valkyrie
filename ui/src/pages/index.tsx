@@ -1,4 +1,4 @@
-import VenueForm from '../components/venue_form';
+import VenueForm from '../components/VenueForm';
 import { Container } from '@material-ui/core';
 
 export default function Index() {

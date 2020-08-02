@@ -3,6 +3,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
 import EventSeatOutlinedIcon from '@material-ui/icons/EventSeatOutlined';
+import PropTypes from 'prop-types';
 
 class Seat extends Component {
   constructor(props) {
@@ -31,3 +32,8 @@ class Seat extends Component {
 };
 
 export default Seat;
+
+Seat.propTypes = {
+  row: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  column: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+};
