@@ -28,8 +28,8 @@ class BestAvailableSeatsResult extends Component {
     return(
       <Card className={classes.root}>
         <CardContent>
-        <Typography>Best Available Seat(s)</Typography>
-            <Typography variant="h6" color="primary">{
+        <Typography color="primary">Best Available Seat(s)</Typography>
+            <Typography variant="h6" color="secondary">{
               this.props.seats.filter(e => e).map((item) => {
                 return item.id;
               }).sort().join(" • ")}

@@ -5,19 +5,37 @@ import Venue from './Venue';
 import fetch from 'isomorphic-unfetch';
 import BestAvailableSeatsResult from './BestAvailableSeatsResult';
 import { object, number , ref } from 'yup';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { FormGroup } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        marginTop: theme.spacing(2),
+        width: '100%',
+      },
+    },
+  }),
+);
 
 const validationSchema = object({
   venue: object({layout: object({
-      rows: number().required().min(2).max(26),
-      columns: number().required().min(2).max(20)
+      rows: number().required('is a required field').min(2, 'must be greater than or equal to 2').
+        max(26, 'must be less than or equal to 26'),
+      columns: number().required('is a required field').min(2, 'must be greater than or equal to 2').
+        max(26, 'must be less than or equal to 26'),
     })
   }),
-  party_of: number().required().min(1).max(ref('venue.layout.columns'))
+  party_of: number().min(1, 'must be greater than or equal to 1').
+    max(ref('venue.layout.columns'), 'must be less than or equal to Number of Columns')
 })
 
 function VenueForm () {
   const [checkedItems, setCheckedItems] = React.useState(new Set)
   const [bestAvailableSeats, setBestAvailableSeats] = React.useState(new Array)
+  const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       venue: {
@@ -61,40 +79,46 @@ function VenueForm () {
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          id='venue.layout.rows'
-          name='venue.layout.rows'
-          label='Rows'
-          InputProps={{ inputProps: { min: 0, max: 10 } }}
-          onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
-          value={formik.values.venue.layout.rows}
-          error={Boolean(formik.errors.venue?.layout?.rows)}
-          helperText={formik.errors.venue?.layout?.rows}
-        />
-        <TextField
-          id='venue.layout.columns'
-          name='venue.layout.columns'
-          label='Columns'
-          InputProps={{ inputProps: { min: 0, max: 10 } }}
-          onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
-          value={formik.values.venue.layout.columns}
-          error={Boolean(formik.errors.venue?.layout?.columns)}
-          helperText={formik.errors.venue?.layout?.columns}
-        />
-        <TextField
-          id='party_of'
-          name='party_of'
-          label='Party of'
-          onChange={formik.handleChange}
-          value={formik.values.party_of}
-          error={Boolean(formik.errors.party_of)}
-          helperText={formik.errors.party_of}
-        />
-        <Button disabled={formik.isSubmitting} type='submit' color='primary' variant='outlined'>Find Best Seats</Button>
+      <form className={classes.root} onSubmit={formik.handleSubmit}>
+        <FormGroup row={true}>
+          <TextField
+            id='venue.layout.rows'
+            name='venue.layout.rows'
+            label='Number of Rows'
+            InputProps={{ inputProps: { min: 0, max: 10 } }}
+            onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
+            value={formik.values.venue.layout.rows}
+            error={Boolean(formik.errors.venue?.layout?.rows)}
+            helperText={formik.errors.venue?.layout?.rows}
+          />
+          <TextField
+            id='venue.layout.columns'
+            name='venue.layout.columns'
+            label='Number of Columns'
+            InputProps={{ inputProps: { min: 0, max: 10 } }}
+            onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
+            value={formik.values.venue.layout.columns}
+            error={Boolean(formik.errors.venue?.layout?.columns)}
+            helperText={formik.errors.venue?.layout?.columns}
+          />
+          <TextField
+            id='party_of'
+            name='party_of'
+            label='Party of'
+            onChange={formik.handleChange}
+            value={formik.values.party_of}
+            error={Boolean(formik.errors.party_of)}
+            helperText={formik.errors.party_of}
+          />
+        </FormGroup>
+        <Button startIcon={<SearchIcon/>} disabled={formik.isSubmitting} type='submit' color='primary' variant='outlined'>Find Best Seats</Button>
       </form>
       <BestAvailableSeatsResult seats={bestAvailableSeats}/>
-      <Venue checkedItems={checkedItems} row={formik.values.venue.layout.rows} column={formik.values.venue.layout.columns}/>
+      {
+        formik.isValid ? <Venue checkedItems={checkedItems}
+                                row={formik.values.venue.layout.rows}
+                                column={formik.values.venue.layout.columns}/> : null
+      }
     </div>
   )
 };
