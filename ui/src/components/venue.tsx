@@ -18,13 +18,16 @@ const styles = (theme : Theme) => ({
   },
   container: {
     maxHeight: 680,
+    padding: '3%',
+    backgroundColor: '#272C34'
   },
   cell: {
-    borderBottom: '#33363E'
+    borderBottom: '#33363E',
+    padding: '5px'
   },
   stageCell: {
-    backgroundColor: "#f07241",
-    color: "#fff",
+    backgroundColor: "#979797",
+    color: "#2d2d2d",
     borderBottom: 'none'
   },
   selectInfoCell: {
@@ -82,7 +85,7 @@ class Venue extends Component {
           <TableHead>
             <TableRow>
               <TableCell className={classes.stageCell} align="center" colSpan={this.seatRowSize()}>
-                <Typography variant="h4" component="h2">Stage</Typography>
+                <Typography>Stage</Typography>
               </TableCell>
             </TableRow>
           </TableHead>

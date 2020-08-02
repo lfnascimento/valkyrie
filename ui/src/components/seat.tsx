@@ -17,9 +17,9 @@ class Seat extends Component {
         label={ `${this.getId()}` }
         labelPlacement="start"
         control={<Checkbox
-          icon={<EventSeatOutlinedIcon fontSize="large" />}
+          icon={<EventSeatOutlinedIcon/>}
           color='primary'
-          checkedIcon={<EventSeatIcon fontSize="large" />}
+          checkedIcon={<EventSeatIcon/>}
           name={`seats[${this.getId()}]`} />}
           onChange={this.props.onChange}
       />
