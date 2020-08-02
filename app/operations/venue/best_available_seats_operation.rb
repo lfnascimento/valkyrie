@@ -76,11 +76,11 @@ module Venue
     end
 
     def calculate_best_seat_columns
-      row_size.even? ? [(row_size / 2), ((row_size / 2) + 1)] : [(row_size / 2.0).ceil]
+      column_size.even? ? [(column_size / 2), ((column_size / 2) + 1)] : [(column_size / 2.0).ceil]
     end
 
-    def row_size
-      @row_size ||= venue.dig(:layout, :rows).to_i
+    def column_size
+      @column_size ||= venue.dig(:layout, :columns).to_i
     end
   end
 end
