@@ -1,0 +1,28 @@
+{
+  "venue": {
+    "layout": {
+      "rows": 2,
+      "columns": 9
+    }
+  },
+  "seats": [
+    {
+      "id": "a5",
+      "row": "a",
+      "column": 5,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "a6",
+      "row": "a",
+      "column": 6,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "a4",
+      "row": "a",
+      "column": 4,
+      "status": "AVAILABLE"
+    }
+  ]
+}
