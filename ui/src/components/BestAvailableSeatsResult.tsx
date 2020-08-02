@@ -2,10 +2,10 @@ import { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-const styles = theme => ({
+const styles = (theme : Theme) => ({
   root: {
     minWidth: 275,
     backgroundColor: "#363A42",

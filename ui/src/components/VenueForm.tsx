@@ -31,21 +31,32 @@ function VenueForm () {
     },
     validationSchema,
     onSubmit: values => {
-      const seats = [...checkedItems].map((item) => { const data = item.match(/seats\[(([a-zA-Z])(\d+))\]/); return { id: data[1], row: data[2], column: data[3]} })
+      const seats = [...checkedItems].map((item) => {
+        const data = item.match(/seats\[(([a-zA-Z])(\d+))\]/); return { id: data[1], row: data[2], column: data[3]}
+      })
       return findBestAvailableSeat(JSON.stringify({...values, ...{ seats: seats }}))
     }
   })
 
   const findBestAvailableSeat = async function(params : string) {
-    const res = await fetch('http://localhost:3001/api/v1/venue/find_best_available_seats', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
-    })
-    const data = await res.json()
-    setBestAvailableSeats(data)
+    try {
+      const res = await fetch('http://localhost:3001/api/v1/venue/find_best_available_seats', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: params
+      })
+      const data = await res.json()
+      if (res.status == 422) {
+        formik.setErrors(data)
+        setBestAvailableSeats([])
+      } else {
+        setBestAvailableSeats(data)
+      }
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   return (
