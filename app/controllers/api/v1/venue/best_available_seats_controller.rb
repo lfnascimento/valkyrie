@@ -2,7 +2,7 @@ module Api
   module V1
     module Venue
       class BestAvailableSeatsController < ApplicationController
-        def lookup
+        def find
           if contract_validation.success?
             render json: best_available_seats.as_json(only: [:id, :row, :column]), status: :ok
           else

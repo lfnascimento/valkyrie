@@ -37,7 +37,7 @@ function VenueForm () {
   })
 
   const findBestAvailableSeat = async function(params : string) {
-    const res = await fetch('http://localhost:3001/api/v1/venue/lookup_best_available_seats', {
+    const res = await fetch('http://localhost:3001/api/v1/venue/find_best_available_seats', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'

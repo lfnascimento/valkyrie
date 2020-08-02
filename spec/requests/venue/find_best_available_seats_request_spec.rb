@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Lookup Best Available Seats API Endpoint', type: :request do
-  describe 'POST /api/v1/venue/lookup_best_available_seats' do
-    before { post api_v1_venue_lookup_best_available_seats_path, params: params }
+describe 'Find Best Available Seats API Endpoint', type: :request do
+  describe 'POST /api/v1/venue/find_best_available_seats' do
+    before { post api_v1_venue_find_best_available_seats_path, params: params }
 
     context 'with valid params' do
       let(:params) do
