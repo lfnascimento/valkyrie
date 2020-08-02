@@ -4,6 +4,16 @@ import { Button } from '@material-ui/core';
 import Venue from './venue';
 import fetch from 'isomorphic-fetch';
 import BestAvailableSeatsResult from './best_available_seats_result';
+import { object, number } from 'yup';
+
+const validationSchema = object({
+  venue: object({layout: object({
+      rows: number().required().min(2).max(26),
+      columns: number().required().min(2).max(20)
+    })
+  }),
+  party_of: number().required().min(1).max(26)
+})
 
 function VenueForm () {
   const [checkedItems, setCheckedItems] = React.useState(new Set)
@@ -19,6 +29,7 @@ function VenueForm () {
       party_of: 1,
       seats: []
     },
+    validationSchema,
     onSubmit: values => {
       const seats = [...checkedItems].map((item) => { const data = item.match(/seats\[(([a-zA-Z])(\d+))\]/); return { id: data[1], row: data[2], column: data[3]} })
       findBestAvailableSeat(JSON.stringify({...values, ...{ seats: seats }}))
@@ -47,6 +58,8 @@ function VenueForm () {
           type='text'
           onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
           value={formik.values.venue.layout.rows}
+          error={formik.errors.venue?.layout?.rows}
+          helperText={formik.errors.venue?.layout?.rows}
         />
         <TextField
           id='venue.layout.columns'
@@ -55,6 +68,8 @@ function VenueForm () {
           type='text'
           onChange={(e) => { setBestAvailableSeats([]); checkedItems.clear(); formik.handleChange(e)} }
           value={formik.values.venue.layout.columns}
+          error={formik.errors.venue?.layout?.columns}
+          helperText={formik.errors.venue?.layout?.columns}
         />
         <TextField
           id='party_of'
@@ -63,6 +78,8 @@ function VenueForm () {
           type='text'
           onChange={formik.handleChange}
           value={formik.values.party_of}
+          error={formik.errors.party_of}
+          helperText={formik.errors.party_of}
         />
         <Button type='submit' color='primary' variant='outlined'>Find Best Seats</Button>
       </form>

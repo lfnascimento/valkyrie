@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
+import StarsIcon from '@material-ui/icons/Stars';
 
 const styles = theme => ({
   root: {
@@ -28,8 +28,9 @@ class BestAvailableSeatsResult extends Component {
     return(
       <Card className={classes.root}>
         <CardContent>
-          <Typography variant="h5">Best Seat(s)</Typography>
-            <Typography color="primary">{this.props.seats.map((item) => {
+        <Typography>Best Available Seat(s)</Typography>
+            <Typography variant="h6" color="primary">{
+              this.props.seats.filter(e => e).map((item) => {
                 return item.id;
               }).sort().join(" • ")}
             </Typography>
