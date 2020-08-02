@@ -30,12 +30,12 @@ module Venue
     def lookup_best_consecutive_seats(row)
       return if party_of > row.size
 
-      check_consecutive_seats(row.sort_by { |seat| seat[:distance] })
+      check_consecutive_seats(row.sort_by { |seat| seat[:column] })
     end
 
     def check_consecutive_seats(row)
       while party_of <= row.size
-        break if set_best_consecutive_available_seats(row.first(party_of))
+        set_best_consecutive_available_seats(row.first(party_of))
 
         row.shift
       end
@@ -47,7 +47,7 @@ module Venue
 
     def best_consecutive_available_seats?(seats)
       consecutive_seats?(seats) &&
-        ((seats.sum(0) { |seat| seat[:distance] } < best_available_seats.sum(0) { |seat| seat[:distance] }) ||
+        ((seats.sum(0) { |seat| seat[:distance] } <= best_available_seats.sum(0) { |seat| seat[:distance] }) ||
          best_available_seats.empty?)
     end
 
