@@ -1,0 +1,47 @@
+{
+  "venue": {
+    "layout": {
+      "rows": 2,
+      "columns": 9
+    }
+  },
+  "seats": [
+    {
+      "id": "b1",
+      "row": "b",
+      "column": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b2",
+      "row": "b",
+      "column": 2,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b3",
+      "row": "b",
+      "column": 3,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b6",
+      "row": "b",
+      "column": 6,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b7",
+      "row": "b",
+      "column": 7,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "b8",
+      "row": "b",
+      "column": 8,
+      "status": "AVAILABLE"
+    }
+  ],
+  "party_of": 3
+}
