@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/lfnascimento/valkyrie)
 # Valkyrie - Best Available Seats
-<img width="1269" alt="Screen Shot 2020-08-02 at 17 55 47" src="https://user-images.githubusercontent.com/6806019/89132398-2962d480-d4ea-11ea-92e8-ad1091c96e90.png">
+<img width="1264" alt="Screen Shot 2020-08-02 at 19 03 17" src="https://user-images.githubusercontent.com/6806019/89133518-e1947b00-d4f2-11ea-970d-e493b6b34866.png">
 
 To run this project you need to have:
 
