@@ -8,6 +8,8 @@ import { object, number , ref } from 'yup';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { FormGroup, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,8 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#E0E0E0',
       marginTop: '5%'
     },
+    layoutFormGroup: {
+      marginBottom: '20%'
+    },
     seatsFormGroup: {
-      marginTop: '30%'
+      marginTop: '20%'
     }
   }),
 );
@@ -96,7 +101,8 @@ function VenueForm () {
         </Grid>
         <Grid item xs={12} sm={4}>
           <form className={classes.root} onSubmit={formik.handleSubmit}>
-            <FormGroup row={true}>
+            <FormGroup row={true} className={classes.layoutFormGroup}>
+              <Typography color="secondary">1. Please, set up the venue layout</Typography>
               <TextField
                 color='secondary'
                 id='venue.layout.rows'
@@ -119,12 +125,14 @@ function VenueForm () {
                 helperText={formik.errors.venue?.layout?.columns}
               />
             </FormGroup>
-            <Typography color="secondary">Please, select seats that should be available</Typography>
+            <Typography color="secondary">2. Choose some seating options</Typography>
             <FormGroup className={classes.seatsFormGroup}>
+              <Typography color="secondary">3. How many seats would you like?</Typography>
               <TextField
                 id='party_of'
+                color='secondary'
                 name='party_of'
-                label='How many consecutive seats?'
+                label='Number of Seat(s)'
                 onChange={formik.handleChange}
                 value={formik.values.party_of}
                 error={Boolean(formik.errors.party_of)}

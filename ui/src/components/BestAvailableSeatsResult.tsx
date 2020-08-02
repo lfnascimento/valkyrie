@@ -24,7 +24,7 @@ class BestAvailableSeatsResult extends Component {
     return(
       <Card className={classes.root}>
         <CardHeader titleTypographyProps={{variant: "h6", color: 'secondary'}}
-                    title="Best Seat(s)"
+                    title="Best Seat(s) Result"
                     action={<GradeIcon color='primary' />}
                     />
         <CardContent>
