@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch';
 import BestAvailableSeatsResult from './BestAvailableSeatsResult';
 import { object, number , ref } from 'yup';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { FormGroup } from '@material-ui/core';
+import { FormGroup, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     button: {
-      color: '#fff',
+      color: '#E0E0E0',
       marginTop: '5%'
     },
     seatsFormGroup: {
@@ -119,6 +119,7 @@ function VenueForm () {
                 helperText={formik.errors.venue?.layout?.columns}
               />
             </FormGroup>
+            <Typography color="secondary">Please, select seats that should be available</Typography>
             <FormGroup className={classes.seatsFormGroup}>
               <TextField
                 id='party_of'

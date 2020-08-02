@@ -23,9 +23,9 @@ class BestAvailableSeatsResult extends Component {
     const { classes } = this.props;
     return(
       <Card className={classes.root}>
-        <CardHeader titleTypographyProps={{variant: "h5", color: 'textSecondary'}}
+        <CardHeader titleTypographyProps={{variant: "h6", color: 'secondary'}}
                     title="Best Seat(s)"
-                    avatar={<GradeIcon color='primary' />}
+                    action={<GradeIcon color='primary' />}
                     />
         <CardContent>
           {
