@@ -24,10 +24,10 @@ module Venue
     end
 
     def best_available_seats_for_a_group
-      available_seats.group_by { |seat| seat[:row] }.values.each(&method(:lookup_best_consecutive_seats))
+      available_seats.group_by { |seat| seat[:row] }.values.each(&method(:find_best_consecutive_seats))
     end
 
-    def lookup_best_consecutive_seats(row)
+    def find_best_consecutive_seats(row)
       return if party_of > row.size
 
       check_consecutive_seats(row.sort_by { |seat| seat[:column] })

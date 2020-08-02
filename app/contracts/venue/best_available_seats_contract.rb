@@ -3,7 +3,7 @@ module Venue
     include ::LetterNumberConvertible
 
     params do
-      optional(:party_of).value(:integer, gt?: 0)
+      optional(:party_of).maybe(:integer, gt?: 0)
 
       required(:venue).hash do
         required(:layout).hash do

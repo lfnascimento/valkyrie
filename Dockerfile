@@ -19,6 +19,6 @@ COPY Gemfile.lock /valkyrie/Gemfile.lock
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install
 
-EXPOSE 3000
+EXPOSE 3001
 
 CMD ['bundle', 'exec', 'rails', 'server']
