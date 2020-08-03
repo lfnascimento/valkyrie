@@ -2,9 +2,9 @@ version: '3.7'
 services:
   vk-api:
     build: ./api
-    command: ./api/bin/rails s -p 3001 -b '0.0.0.0'
+    command: bin/rails s -p 3001 -b '0.0.0.0'
     volumes:
-      - '.:/valkyrie-api'
+      - '.:/vk-api'
     ports:
       - '3001:3001'
     depends_on:
