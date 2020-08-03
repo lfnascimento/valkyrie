@@ -17,7 +17,8 @@ $ docker-compose run vk-api bin/setup
 
 ## Running the project
 
-```$ docker-compose up```
+- `$ docker-compose up` (If it is not already running)
+- open http://localhost:3000
 
 ## Using API
 
