@@ -1,14 +1,23 @@
 version: '3.7'
 services:
-  vk:
-    build: .
+  vk-api:
+    build: ./api
     command: bin/rails s -p 3001 -b '0.0.0.0'
     volumes:
-      - '.:/valkyrie'
+      - '.:/vk-api'
     ports:
       - '3001:3001'
     depends_on:
       - db
+  vk-ui:
+    build: ./ui
+    command: npm run dev
+    volumes:
+      - '.:/vk-ui'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - vk-api
   db:
     image: postgres:12.1-alpine
     volumes:
