@@ -11,8 +11,8 @@ To run this project you need to have:
 ```
 $ git clone https://github.com/lfnascimento/valkyrie.git
 $ cd valkyrie
-$ docker-compose build
-$ docker-compose run vk bin/setup
+$ docker-compose up
+$ docker-compose run vk-api bin/setup
 ```
 
 ## Running the project
@@ -57,4 +57,4 @@ Example:
 
 If a group of seats is requested, the request needs the `party_of` param
 
-Please check the [examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG) out 
+Please check the [examples](https://documenter.getpostman.com/view/8746814/SzmcZeCG) out
